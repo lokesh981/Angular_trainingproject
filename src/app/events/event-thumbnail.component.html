@@ -1,0 +1,64 @@
+ <!-- Normal------
+  
+  <div class="well hoverwell thumbnail">
+    <h2>{{event?.name}}</h2>
+    <div>Date: {{event?.date}}</div>
+    <div>Time: {{event?.time}}</div>
+    <div>Price: \${{event?.price}}</div>
+    <div>
+      <span>Location: {{event?.location?.address}}</span>
+      <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+    </div>
+  </div>-->
+
+ <!--  IF Condition
+  
+  <div class="well hoverwell thumbnail">
+    <h2>{{event?.name}}</h2>
+    <div>Date: {{event?.date}}</div>
+    <div>Time: {{event?.time}}</div>
+    <div>Price: ${{event?.price}}</div>
+    <div [hidden]="!event?.location">
+      <span>Location: {{event?.location?.address}}</span>
+      <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+    </div>
+ <div [hidden]="!event?.onlineUrl">
+  Online Url:{{event?.onlineUrl}}
+ </div>
+ 
+  </div>-->
+
+ <!-- Switch Case-->
+ <div [routerLink]="['/events',event.id]" class="well hoverwell thumbnail">
+  <div class="well hoverwell thumbnail">
+    <h2>{{event?.name | lowercase}}</h2>
+    <div>Date: {{event?.date}}</div>
+    
+    <!--<div [class.green]="event?.time === '8:00 am'"  [class.bold]="event?.time === '8:00 am'" [ngSwitch]="event?.time">Time: {{event?.time}}-->
+     <!--<div [ngClass]="{green : event?.time === '8:00 am', bold : event?.time === '8:00 am'}" [ngSwitch]="event?.time">Time: {{event?.time}}-->
+      <!--<div [ngClass]="getStartTimeClass()" [ngSwitch]="event?.time">Time: {{event?.time}}-->
+       <!--<div [style.color]="event?.time === '8:00 am' ? '#003300' : '#bbb'"
+        [ngSwitch]="event?.time">Time: {{event?.time}}-->
+        <!--<div [ngStyle]="{'color':event?.time === '8:00 am' ? '#00300' : '#bbb',
+        'font-weight':event?.time === '8:00 am' ? 'bold' : 'normal'}"
+         [ngSwitch]="event?.time">Time: {{event?.time}}-->
+         <div [ngStyle]="getStartTimeStyle()" [ngSwitch]="event?.time">Time: {{event?.time}}   
+      <span *ngSwitchCase="'8:00 am'"> EarlyStart </span>
+      <span *ngSwitchCase="'10:00 am'"> LateStart </span>
+      <span *ngSwitchDefault> NormalStart </span>
+    </div>
+
+
+    <div>Price: ${{event?.price}}</div>
+    <div [hidden]="!event?.location">
+      <span>Location: {{event?.location?.address}}</span>
+      <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+    </div>
+
+
+ <div [hidden]="!event?.onlineUrl">
+  Online Url:{{event?.onlineUrl}}
+ </div>
+</div>
+
+
